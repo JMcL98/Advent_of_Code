@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace First // Note: actual namespace depends on the project name.
+namespace First
 {
     public class Program
     {
