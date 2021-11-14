@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -77,7 +77,8 @@ namespace Practice2
             if (rule.minimum <= count && count <= rule.maximum)
             {
                 return true;
-            } else
+            } 
+            else 
             {
                 return false;
             }
