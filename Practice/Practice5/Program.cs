@@ -5,7 +5,6 @@
         public static void Main(string[] args)
         {
             string[] strings = File.ReadAllLines("input.txt");
-
             List<Seat> seats = new List<Seat>();
 
             foreach (string s in strings)
@@ -25,9 +24,9 @@
 
             // Part 2
             List<Seat> orderedSeats = SortSeats(seats);
-            int startingID = orderedSeats[0].GetSeatID();
+
             int nextID = 0; // Must be assigned to base value so it can compile
-            for (int i = startingID; i < orderedSeats.Count - startingID; i++)
+            for (int i = 0; i < orderedSeats.Count; i++)
             {
                 nextID = orderedSeats[i].GetSeatID() + 1;
                 if (orderedSeats[i + 1].GetSeatID() != nextID)
@@ -40,7 +39,7 @@
 
         public static List<Seat> SortSeats(List<Seat> unorderedSeats)
         {
-            return unorderedSeats.OrderBy(o => o.GetSeatID()).ToList();
+            return unorderedSeats.OrderBy(o => o.GetSeatID()).ToList(); // Create list of seats ordered by Seat ID
         }
     }
 
@@ -72,7 +71,7 @@
                         break;
                 }
             }
-            row = Convert.ToInt32(rowBinary, 2);
+            row = Convert.ToInt32(rowBinary, 2); // Convert from binary in string format to int
         }
 
         private void GetColumn()
@@ -90,7 +89,7 @@
                         break;
                 }
             }
-            column = Convert.ToInt32(colBinary, 2);
+            column = Convert.ToInt32(colBinary, 2); // Convert from binary in string format to int
         }
 
         public int GetSeatID()
