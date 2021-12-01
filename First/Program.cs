@@ -19,7 +19,7 @@ namespace First
 
             // Part 1
             var count = 0;
-            for (int i = 1; i < depths.Length; i++)
+            for (var i = 1; i < depths.Length; i++)
             {
                 if (depths[i] > depths[i - 1])
                 {
