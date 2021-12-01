@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace First
+﻿namespace First
 {
     public class Program
     {
@@ -30,12 +26,10 @@ namespace First
 
             // Part 2
             count = 0;
-            var sizeA = 0;
-            var sizeB = 0;
             for (var i = 3; i < depths.Length; i++)
             {
-                sizeA = depths[i - 3] + depths[i - 2] + depths[i - 1];
-                sizeB = depths[i - 2] + depths[i - 1] + depths[i];
+                var sizeA = depths[i - 3] + depths[i - 2] + depths[i - 1];
+                var sizeB = depths[i - 2] + depths[i - 1] + depths[i];
                 if (sizeB > sizeA)
                 {
                     count++;
