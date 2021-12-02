@@ -1,4 +1,4 @@
-﻿namespace First
+﻿namespace Day01
 {
     public class Program
     {
@@ -7,7 +7,7 @@
             // Initialize Variables
             var strings = File.ReadAllLines("input.txt");
             var depths = new int[strings.Count()];
-            
+
             for (var i = 0; i < strings.Length; i++)
             {
                 depths[i] = int.Parse(strings[i]);
