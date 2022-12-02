@@ -14,8 +14,9 @@ public static class Program
             games.Add(new Game(s));
         }
 
-        Console.WriteLine("Part 1: {0}", games.Sum(x => x.CalculateScore()));
-        
+        Console.WriteLine("Part 1: {0}", games.Sum(x => x.CalculateScore(1)));
+
+        Console.WriteLine("Part 2: {0}", games.Sum(x => x.CalculateScore(2)));
 
     }
 }
@@ -31,31 +32,54 @@ public class Game
         MyMove = moves[2];
     }
 
-    public int CalculateScore()
+    public int CalculateScore(int part)
     {
         int score;
-        switch (MyMove)
+
+        if (part == 1)
         {
-            case 'X':
-                score = 1;
-                score += ElfMove == 'C' ? 6 : 0;
-                score += ElfMove == 'A' ? 3 : 0;
-                break;
+            switch (MyMove)
+            {
+                case 'X':
+                    score = 1;
+                    score += ElfMove == 'C' ? 6 : 0;
+                    score += ElfMove == 'A' ? 3 : 0;
+                    break;
+
+                case 'Y':
+                    score = 2;
+                    score += ElfMove == 'A' ? 6 : 0;
+                    score += ElfMove == 'B' ? 3 : 0;
+                    break;
+
+                case 'Z':
+                    score = 3;
+                    score += ElfMove == 'B' ? 6 : 0;
+                    score += ElfMove == 'C' ? 3 : 0;
+                    break;
                 
-            case 'Y':
-                score = 2;
-                score += ElfMove == 'A' ? 6 : 0;
-                score += ElfMove == 'B' ? 3 : 0;
-                break;
+                default:
+                    score = 0;
+                    break;
+
+            }
+        }
+        else
+        {
+            switch (MyMove)
+            {
+                case 'X':
+                    score = ElfMove switch
+                    {
+                        'A' => 3,
+                        'B' => 2,
+                        'C' => 3,
+                        _ => 0
+                    };
+            }
             
-            case 'Z':
-                score = 3;
-                score += ElfMove == 'B' ? 6 : 0;
-                score += ElfMove == 'C' ? 3 : 0;
-                break;
             
-            default:
-                return 0;
+            
         }
 
         return score;
