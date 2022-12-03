@@ -1,2 +1,1 @@
-Advent of Code 2021 -
-Jordan McLaughlin
+Advent of Code - Jordan McLaughlin
