@@ -8,7 +8,7 @@ on:
     paths:
       - '2023/**'
     branches:
-      - 2023/Prep
+      - main
   workflow_dispatch:
 
 jobs:
