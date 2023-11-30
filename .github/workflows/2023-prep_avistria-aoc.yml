@@ -5,6 +5,8 @@ name: Build and deploy ASP.Net Core app to Azure Web App - avistria-AoC
 
 on:
   push:
+    paths:
+      - '2023/**'
     branches:
       - 2023/Prep
   workflow_dispatch:
