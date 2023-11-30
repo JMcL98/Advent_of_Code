@@ -19,7 +19,6 @@ public class SolveController : ControllerBase
     [HttpGet(Name = "Solve")]
     public string Get(int day, int part, [FromQuery(Name = "args")] List<string> args)
     {
-        var x = 0;
         return _solveService.Solve(day, part, args);
     }
 }
