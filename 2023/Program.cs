@@ -10,7 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<ISolveService, SolveService>();
+builder.Services.AddScoped<ISolveService>(_ =>
+    new SolveService(new FileReaderService(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PuzzleFiles"))));
 
 var app = builder.Build();
 
