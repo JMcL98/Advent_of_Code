@@ -11,8 +11,9 @@ public class Day3
 
     public static string Part2(List<string> input)
     {
+        var engine = new Engine(input);
 
-        return "";
+        return engine.GetValueOfAllGearRatios().ToString();
     }
 }
 
@@ -84,6 +85,17 @@ internal class Engine
                     }
                 }
             }
+
+            if (currentNum != "")
+            {
+                _engineNumbers.Add(new EngineNumber
+                {
+                    startIndex = currentNumStartIndex,
+                    endIndex = input[i].Length - 1,
+                    row = i,
+                    value = int.Parse(currentNum)
+                });
+            }
         }
     }
 
@@ -91,19 +103,10 @@ internal class Engine
     {
         var total = 0;
 
-        var numList = new List<int>();
-        foreach (var num in _engineNumbers)
-        {
-            numList.Add( num.value);
-        }
-
         foreach (var num in _engineNumbers)
         {
             var rowRange = new[] { num.row - 1, num.row, num.row + 1 };
             var symbolsOnAdjacentRows = _engineSymbols.FindAll(x => rowRange.Contains(x.row));
-
-            var symbolsThatTouch =
-                symbolsOnAdjacentRows.FindAll(x => x.position >= num.startIndex - 1 && x.position <= num.endIndex + 1);
 
             var doesSymbolTouchNumber =
                 symbolsOnAdjacentRows.Exists(x => x.position >= num.startIndex - 1 && x.position <= num.endIndex + 1);
@@ -111,6 +114,25 @@ internal class Engine
             if (doesSymbolTouchNumber)
             {
                 total += num.value;
+            }
+        }
+
+        return total;
+    }
+
+    internal int GetValueOfAllGearRatios()
+    {
+        var total = 0;
+        foreach (var symbol in _engineSymbols.FindAll(x => x.symbol == '*'))
+        {
+            var rowRange = new[] { symbol.row - 1, symbol.row, symbol.row + 1 };
+            var numbersOnAdjacentRows = _engineNumbers.FindAll(x => rowRange.Contains(x.row));
+            var numbersThatTouch = numbersOnAdjacentRows.FindAll(x =>
+                symbol.position >= x.startIndex - 1 && symbol.position <= x.endIndex + 1);
+
+            if (numbersThatTouch.Count == 2)
+            {
+                total += numbersThatTouch[0].value * numbersThatTouch[1].value;
             }
         }
 
