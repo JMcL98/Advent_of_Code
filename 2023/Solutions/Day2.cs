@@ -4,15 +4,8 @@ public static class Day2
 {
     public static string Part1(List<string> input, int maxRedCubes, int maxBlueCubes, int maxGreenCubes)
     {
-        var allGames = new List<Game>();
-        foreach (var line in input)
-        {
-            var gameNum = int.Parse(line.Split(':')[0].Split(' ')[1]);
-            allGames.Add(new Game(gameNum, line.Split(':')[1]));
-        }
-
         var total = 0;
-        foreach (var game in allGames)
+        foreach (var game in GetGamesList(input))
         {
             total += game.GetGameNumberIfValidGame(maxRedCubes, maxBlueCubes, maxGreenCubes);
         }
@@ -20,14 +13,37 @@ public static class Day2
         return total.ToString();
     }
 
+    public static string Part2(List<string> input)
+    {
+        var total = 0;
+        foreach (var game in GetGamesList(input))
+        {
+            total += game.GetPowerOfGame();
+        }
+
+        return total.ToString();
+    }
+
+    private static List<Game> GetGamesList(List<string> input)
+    {
+        var allGames = new List<Game>();
+        foreach (var line in input)
+        {
+            var gameNum = int.Parse(line.Split(':')[0].Split(' ')[1]);
+            allGames.Add(new Game(gameNum, line.Split(':')[1]));
+        }
+
+        return allGames;
+    }
 }
 
 internal class Game
 {
     private int gameNumber;
-    private int maxRedCubes = 0;
-    private int maxBlueCubes = 0;
-    private int maxGreenCubes = 0;
+
+    private int minRedCubes = 0;
+    private int minBlueCubes = 0;
+    private int minGreenCubes = 0;
 
     internal Game(int gameNumber, string gameText)
     {
@@ -43,15 +59,15 @@ internal class Game
             switch (colour.ToLower())
             {
                 case "red":
-                    maxRedCubes = count > maxRedCubes ? count : maxRedCubes;
+                    minRedCubes = count > minRedCubes ? count : minRedCubes;
                     break;
 
                 case "blue":
-                    maxBlueCubes = count > maxBlueCubes ? count : maxBlueCubes;
+                    minBlueCubes = count > minBlueCubes ? count : minBlueCubes;
                     break;
 
                 case "green":
-                    maxGreenCubes = count > maxGreenCubes ? count : maxGreenCubes;
+                    minGreenCubes = count > minGreenCubes ? count : minGreenCubes;
                     break;
             }
         }
@@ -59,11 +75,16 @@ internal class Game
 
     internal int GetGameNumberIfValidGame(int maxRed, int maxBlue, int maxGreen)
     {
-        if (maxRedCubes <= maxRed && maxBlueCubes <= maxBlue && maxGreenCubes <= maxGreen)
+        if (minRedCubes <= maxRed && minBlueCubes <= maxBlue && minGreenCubes <= maxGreen)
         {
             return gameNumber;
         }
 
         return 0;
+    }
+
+    internal int GetPowerOfGame()
+    {
+        return minRedCubes * minBlueCubes * minGreenCubes;
     }
 }

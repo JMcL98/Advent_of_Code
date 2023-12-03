@@ -54,7 +54,7 @@ public class SolveService : ISolveService
 
                 if (puzzle.Part == 2)
                 {
-                    //return Day2.Part2(_fileReaderService.ReadFile(puzzle));
+                    return Day2.Part2(_fileReaderService.ReadFile(puzzle));
                 }
 
                 // Part doesn't exist
