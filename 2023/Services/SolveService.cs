@@ -45,6 +45,20 @@ public class SolveService : ISolveService
 
                 // Part doesn't exist
                 break;
+
+            case 2:
+                if (puzzle.Part == 1)
+                {
+                    return Day2.Part1(_fileReaderService.ReadFile(puzzle), int.Parse(args[0]), int.Parse(args[1]), int.Parse(args[2]));
+                }
+
+                if (puzzle.Part == 2)
+                {
+                    return Day2.Part2(_fileReaderService.ReadFile(puzzle));
+                }
+
+                // Part doesn't exist
+                break;
         }
 
         return "";
