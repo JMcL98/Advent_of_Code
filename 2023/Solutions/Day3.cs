@@ -1,6 +1,6 @@
 namespace _2023.Solutions;
 
-public class Day3
+public static class Day3
 {
     public static string Part1(List<string> input)
     {
