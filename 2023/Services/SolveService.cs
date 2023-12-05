@@ -6,7 +6,7 @@ using Solutions;
 
 public class SolveService : ISolveService
 {
-    private IFileReaderService _fileReaderService;
+    private readonly IFileReaderService _fileReaderService;
 
     public SolveService(IFileReaderService fileReaderService)
     {
@@ -83,6 +83,20 @@ public class SolveService : ISolveService
                 if (puzzle.Part == 2)
                 {
                     return Day4.Part2(_fileReaderService.ReadFile(puzzle));
+                }
+
+                // Part doesn't exist
+                break;
+
+            case 5:
+                if (puzzle.Part == 1)
+                {
+                    return Day5.Part1(_fileReaderService.ReadFile(puzzle));
+                }
+
+                if (puzzle.Part == 2)
+                {
+                    return Day5.Part2(_fileReaderService.ReadFile(puzzle));
                 }
 
                 // Part doesn't exist

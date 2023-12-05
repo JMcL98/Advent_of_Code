@@ -5,7 +5,7 @@ using Interfaces;
 
 class FileReaderService : IFileReaderService
 {
-    private string _directoryPath;
+    private readonly string _directoryPath;
 
     public FileReaderService(string path)
     {
