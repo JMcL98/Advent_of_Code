@@ -15,7 +15,8 @@ public static class Day8
 
     public static string Part2(List<string> input)
     {
-        var dirSequence = new DirectionSequence(input[0]);
+        var dirStr = input[0];
+        var dirSequence = new DirectionSequence(dirStr);
         input.RemoveRange(0, 2);
         var nodeList = PopulateNodeList(input);
 
@@ -24,7 +25,7 @@ public static class Day8
 
         foreach (var node in currentNodes)
         {
-            multiples.Add(FindNumberOfSteps(node, new DirectionSequence(input[0]), 2));
+            multiples.Add(FindNumberOfSteps(node, new DirectionSequence(dirStr), 2));
         }
 
         long count = 0;
