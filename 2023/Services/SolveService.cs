@@ -143,6 +143,20 @@ public class SolveService : ISolveService
 
                 // Part doesn't exist
                 break;
+
+            case 9:
+                if (puzzle.Part == 1)
+                {
+                    return Day9.Part1(_fileReaderService.ReadFile(puzzle));
+                }
+
+                if (puzzle.Part == 2)
+                {
+                    return Day9.Part2(_fileReaderService.ReadFile(puzzle));
+                }
+
+                // Part doesn't exist
+                break;
         }
 
         return "";
